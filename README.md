@@ -11,7 +11,9 @@ Necessitamos configurar a [API do Kaggle](https://www.kaggle.com/docs/api) para 
 
 ## Dados
 
-Os dados podem ser obtidos mediante o comando `kaggle competitions download -c porto-seguro-data-challenge`
+Os dados podem ser obtidos mediante o comando `kaggle competitions download -c porto-seguro-data-challenge`.
+
+1. Salvar os dados no diretório [data](data).
 
 ## Execução
 
