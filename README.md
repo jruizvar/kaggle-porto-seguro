@@ -11,10 +11,13 @@ Necessitamos configurar a [API do Kaggle](https://www.kaggle.com/docs/api) para 
 
 ## Dados
 
-Os dados podem ser obtidos mediante o comando `kaggle competitions download -c porto-seguro-data-challenge`.
+1. Baixar os dados `kaggle competitions download -c porto-seguro-data-challenge`.
+2. Salvar os dados no diretório [data](data).
 
-1. Salvar os dados no diretório [data](data).
+## Solução
 
-## Execução
+O código da solução se encontra no notebook [solution.ipynb](solution.ipynb). 
 
-O código da solução se encontra no notebook [solution.ipynb](solution.ipynb).
+## Modelo
+
+O módulo [model.py](model.py) contém a classe `Model` consumida pelo notebook para treinamento do modelo e submissão da solução.
