@@ -1,4 +1,4 @@
-# [Porto Seguro Data Challenge | Kaggle](https://www.kaggle.com/c/porto-seguro-data-challenge])
+# [Porto Seguro Data Challenge | Kaggle](https://www.kaggle.com/c/porto-seguro-data-challenge)
 Modelo de propensão de aquisição a novos produtos.
 
 ## Configurações
