@@ -14,11 +14,3 @@ Utilizando o terminal do notebook, podemos também configurar a [API do Kaggle](
 1. Obter token de autenticação `kaggle.json`.
 2. Salvar o token no diretório `~/.kaggle/kaggle.json`.
 3. Ajustar permissões do token `chmod 600 ~/.kaggle/kaggle.json`.
-
-## Solução
-
-O código da solução para do desafio se encontra no notebook [solution.ipynb](src/solution.ipynb). 
-
-## Modelo
-
-O módulo [model.py](src/model.py) contém a classe `Model` consumida pelo notebook, e fornece métodos para treinamento do modelo e submissão da solução.
