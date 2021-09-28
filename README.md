@@ -9,11 +9,6 @@ Necessitamos configurar a [API do Kaggle](https://www.kaggle.com/docs/api) para 
 2. Salvar o token no diretório `~/.kaggle/kaggle.json`.
 3. Ajustar permissões do token `chmod 600 ~/.kaggle/kaggle.json`.
 
-## Dados
-
-1. Baixar os dados `kaggle competitions download -c porto-seguro-data-challenge`.
-2. Salvar os dados no diretório [data](data).
-
 ## Solução
 
 O código da solução se encontra no notebook [solution.ipynb](solution.ipynb). 
