@@ -5,7 +5,7 @@ Para executar no notebook [solution.ipynb](../solution.ipynb) este diretório de
 - `train.csv.zip`
 - `test.csv.zip`
 
-Para baixar os dados executar os comando 
+Para baixar os dados executar os comandos:
 
 - `kaggle competitions download -c porto-seguro-data-challenge -f train.csv`
 - `kaggle competitions download -c porto-seguro-data-challenge -f test.csv`
