@@ -35,7 +35,6 @@ class Model:
     """
     def __init__(self, n_features):
         self.n_features = self._valida_input(n_features)
-        self._bins = 100
         self._columns = ['var1']
         self._score = 0.
         self._estimator = None
@@ -60,7 +59,7 @@ class Model:
         """
         dataprep = make_pipeline(
             SimpleImputer(strategy='median'),
-            KBinsDiscretizer(n_bins=self._bins, strategy='uniform'),
+            KBinsDiscretizer(n_bins=100, strategy='uniform'),
         )
         transformer = make_column_transformer(
             (MissingIndicator(), columns),

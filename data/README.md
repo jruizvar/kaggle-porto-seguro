@@ -1,6 +1,6 @@
 # Dados
 
-Para executar no notebook [solution.ipynb](../solution.ipynb) este diretório deve conter os seguintes arquivos de dados:
+Para executar no notebook [solution.ipynb](../src/solution.ipynb) este diretório deve conter os seguintes arquivos de dados:
 
 - `train.csv.zip`
 - `test.csv.zip`
