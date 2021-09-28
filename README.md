@@ -5,7 +5,9 @@ Modelo de propensão de aquisição a novos produtos.
 
 Para criar um notebook no ambiente do [Google Cloud](https://cloud.google.com/) com suporte à linguagem de programação **Python**, execute o seguinte comando no [Cloud Shell](https://cloud.google.com/shell):
 
-`gcloud notebooks instances create kaggle-20210928 --container-repository=gcr.io/kaggle-images/python --container-tag=latest --machine-type=c2-standard-4 --location us-west1-b`
+```console
+gcloud notebooks instances create kaggle-20210928 --container-repository=gcr.io/kaggle-images/python --container-tag=latest --machine-type=c2-standard-4 --location us-west1-b
+```
 
 Utilizando o terminal do notebook, podemos também configurar a [API do Kaggle](https://www.kaggle.com/docs/api) para obter os dados do desafio e para realizar a submissão da solução.
 
