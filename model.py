@@ -1,3 +1,17 @@
+""" Definição da classe Model consumida pelo notebook.
+    Fornece métodos para treinamento do modelo e submissão da solução.
+
+    Treinamento
+    -----------
+    >>> n_features = 20
+    >>> model = Model(n_features)
+    >>> model.train(X_train, y_train)
+
+    Submissão
+    ---------
+    >>> outfile = 'submission-2809.csv'
+    >>> model.submit(X_test, outfile, upload=True)
+"""
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import make_pipeline as imb_make_pipeline
 from sklearn.compose import make_column_transformer
@@ -17,46 +31,51 @@ class Model:
         Parameters
         ----------
         n_features: int
-            Número de variáveis a serem exploradas.
-
-        n_bins: int
-            Número de bins na discretização de variáveis.
+            Número de variáveis exploradas pelo modelo.
     """
-    def __init__(self, n_features, n_bins):
-        self.n_features = n_features
-        self.n_bins = n_bins
+    def __init__(self, n_features):
+        self.n_features = self._valida_input(n_features)
+        self._bins = 100
         self._columns = ['var1']
         self._score = 0.
         self._estimator = None
 
-    def _model(self):
+    def _valida_input(self, n_features):
+        if n_features not in range(2, 69):
+            msg = 'Número de variáveis invalido.'
+            raise ValueError(msg)
+        return n_features
+
+    def _pipeline(self, columns):
         """ Método para definir o pipeline com as etapas
             de dataprep, over sampling, e algoritmo.
 
+            Parameters
+            ----------
+            columns: List[str]
+
             Return
             ------
-            _pipeline: function
+            : imblear.pipeline
         """
-        def _pipeline(columns):
-            dataprep = make_pipeline(
-                SimpleImputer(strategy='median'),
-                KBinsDiscretizer(n_bins=self.n_bins, strategy='uniform'),
-            )
-            transformer = make_column_transformer(
-                (MissingIndicator(), columns),
-                (dataprep, columns),
-            )
-            kargs = {
-                'C': 0.1,
-                'solver': 'liblinear',
-                'random_state': 42,
-            }
-            return imb_make_pipeline(
-                transformer,
-                SMOTE(random_state=42),
-                LogisticRegression(**kargs),
-            )
-        return _pipeline
+        dataprep = make_pipeline(
+            SimpleImputer(strategy='median'),
+            KBinsDiscretizer(n_bins=self._bins, strategy='uniform'),
+        )
+        transformer = make_column_transformer(
+            (MissingIndicator(), columns),
+            (dataprep, columns),
+        )
+        kargs = {
+            'C': 0.1,
+            'solver': 'liblinear',
+            'random_state': 42,
+        }
+        return imb_make_pipeline(
+            transformer,
+            SMOTE(random_state=42),
+            LogisticRegression(**kargs),
+        )
 
     def _evaluate(self, X, y, columns):
         """ Avalia o modelo usando as colunas selecionadas
@@ -72,8 +91,7 @@ class Model:
             ------
             score: float
         """
-        pipeline = self._model()
-        clf = pipeline(columns)
+        clf = self._pipeline(columns)
         scores = cross_val_score(clf, X, y, scoring='f1', cv=15)
         score = np.mean(scores)
         return score
@@ -106,9 +124,8 @@ class Model:
             X: pd.DataFrame
             y: pd.Series
         """
-        cols = self._iteratecolumns(X, y)
-        pipeline = self._model()
-        clf = pipeline(cols)
+        columns = self._iteratecolumns(X, y)
+        clf = self._pipeline(columns)
         clf.fit(X, y)
         self._estimator = clf
 
