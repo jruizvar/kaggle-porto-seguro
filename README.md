@@ -10,3 +10,10 @@ gcloud notebooks instances create kaggle-20210928 --container-repository=gcr.io/
 ```
 
 O comando anterior pressupõe a existência de um projeto no ambiente da Google Cloud com possibilidade de cobranças.
+
+## Configurações no ambiente local
+
+Alternativamente, podemos trabalhar localmente criando um ambiente virtual com as dependências necessárias:
+
+- `python3 -m venv env; source env/bin/activate`
+- `pip install -r requirements.txt`
